@@ -1,0 +1,40 @@
+[{
+    "id": 1,
+    "name": "Arjun Kakkar",
+    "occupation": "developer",
+    "location": "Woodbridge Office"
+  },
+  {
+    "id": 2,
+    "name": "Amanda Hoover",
+    "occupation": "reporter",
+    "location": "Philly"
+  },
+  {
+    "id": 3,
+    "name": "Jess Beym",
+    "occupation": "editor",
+    "location": "South Jersey"
+  },
+
+  {
+    "id": 4,
+    "name": "Brittney",
+    "occupation": "print lab specialist",
+    "location": "Woodbridge Office"
+  },
+
+  {
+    "id": 5,
+    "name": "Brianna Kudisch",
+    "occupation": "reporter",
+    "location": "Woodbridge Office"
+  },
+
+  {
+    "id": 6,
+    "name": "Sophie Nieto-Munoz",
+    "occupation": "reporter",
+    "location": "Trenton Bureau"
+  }
+]
