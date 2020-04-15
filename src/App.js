@@ -21,11 +21,20 @@ class App extends Component {
   handleList = (event) => {
     // handle the sort from array of employees, sort by category. Have a default sort
     //handle the filter, later
-    // const sorted = 
+    // const sorted =
     //
+  };
 
+  handleTableSort = (colName) => {
+    const currentList = [...this.state.employees];
+    currentList.sort(
+      (employeeA, employeeB) => employeeA[colName] - employeeB[colName]
+    );
 
-
+    console.log(currentList);
+    this.setState({
+      employees: currentList,
+    });
   };
 
   render() {
@@ -34,6 +43,15 @@ class App extends Component {
       <Wrapper>
         <Title>Employee List</Title>
         <table>
+          <thead>
+            <tr>
+              <td onClick={() => this.handleTableSort("name")}>name</td>
+              <td onClick={() => this.handleTableSort("occupation")}>
+                occupation
+              </td>
+              <td onClick={() => this.handleTableSort("location")}>location</td>
+            </tr>
+          </thead>
           <tbody>
             {this.state.employees.map((employee) => (
               <EmployeeRow
