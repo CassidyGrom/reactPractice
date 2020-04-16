@@ -4,13 +4,28 @@ import employees from "./employees.json";
 import EmployeeRow from "./components/employeeRow";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import DropDown from "./components/DropDown/DropDown.js";
+import BasicTextField from "./components/field/Field.js";
 
 class App extends Component {
   state = {
     employees,
     SortCategory: "",
+    textFieldValue: "",
     //additional state for filter
+  };
+
+  handleTextFieldChange = (e) => {
+    this.setState({ textFieldValue: e.target.value });
+    this.filterList();
+  };
+
+  filterList = () => {
+    const currentList = [...this.state.employees];
+    const filteredList = currentList.filter((el) => {
+      return el.name.includes(this.state.textFieldValue);
+    });
+    console.log(filteredList);
+    this.setState({ employees: filteredList });
   };
 
   handleChange = (event) => {
@@ -27,9 +42,11 @@ class App extends Component {
 
   handleTableSort = (colName) => {
     const currentList = [...this.state.employees];
-    currentList.sort(
-      (employeeA, employeeB) => employeeA[colName] - employeeB[colName]
-    );
+    currentList.sort((employeeA, employeeB) => {
+      if (employeeA[colName] < employeeB[colName]) {
+        return -1;
+      }
+    });
 
     console.log(currentList);
     this.setState({
@@ -38,34 +55,40 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.SortCategory);
     return (
-      <Wrapper>
+      <div>
         <Title>Employee List</Title>
-        <table>
-          <thead>
-            <tr>
-              <td onClick={() => this.handleTableSort("name")}>name</td>
-              <td onClick={() => this.handleTableSort("occupation")}>
-                occupation
-              </td>
-              <td onClick={() => this.handleTableSort("location")}>location</td>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.employees.map((employee) => (
-              <EmployeeRow
-                id={employee.id}
-                key={employee.id}
-                name={employee.name}
-                occupation={employee.occupation}
-                location={employee.location}
-              />
-            ))}
-          </tbody>
-        </table>
-        <DropDown handleChange={this.handleChange} />
-      </Wrapper>
+        <div>
+          <BasicTextField handleTextFieldChange={this.handleTextFieldChange} />
+        </div>
+        <Wrapper>
+          <table>
+            <thead>
+              <tr>
+                <td onClick={() => this.handleTableSort("name")}>name</td>
+                <td onClick={() => this.handleTableSort("occupation")}>
+                  occupation
+                </td>
+                <td onClick={() => this.handleTableSort("location")}>
+                  location
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.employees.map((employee) => (
+                <EmployeeRow
+                  id={employee.id}
+                  key={employee.id}
+                  name={employee.name}
+                  occupation={employee.occupation}
+                  location={employee.location}
+                />
+              ))}
+            </tbody>
+          </table>
+          {/* <DropDown handleChange={this.handleChange} /> */}
+        </Wrapper>
+      </div>
     );
   }
 }
