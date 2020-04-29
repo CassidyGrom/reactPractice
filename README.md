@@ -1,3 +1,6 @@
+## To Use
+Click either "employee", "occupation" or "location" to filter in alphabetical order. Type in a name or occupation to filter based on results.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
